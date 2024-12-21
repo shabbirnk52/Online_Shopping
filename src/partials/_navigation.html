@@ -1,0 +1,49 @@
+<!-- Navigation bar (Page header) -->
+<header class="navbar navbar-expand navbar-sticky sticky-top d-block z-fixed py-1 py-lg-0 py-xl-1 px-0 bg-primary"
+  data-sticky-element="">
+  <div class="container justify-content-start py-2 py-lg-3">
+
+
+    <!-- Navbar brand (Logo) -->
+    <a class="navbar-brand fs-2 p-0 pe-lg-2 pe-xxl-0 me-0 me-sm-3 me-md-4 me-xxl-5" href="index.html">
+      <img src="assets/img/logo_.png" class="img-fluid" width="200px" alt="logo" />
+    </a>
+
+    <!-- Button group -->
+    <div class="d-flex align-items-center gap-md-1 gap-lg-2 ms-auto">
+
+
+
+
+      <!-- Delivery options button visible on screens < 1200px wide (xl breakpoint) -->
+      <button type="button"
+        class="btn btn-icon fs-lg btn-outline-secondary border-0 rounded-circle animate-scale d-xl-none">
+        <i class="ci-map-pin animate-target"></i>
+      </button>
+
+      <!-- Account button visible on screens > 768px wide (md breakpoint) -->
+      <a class="text-white btn btn-icon fs-lg border animate-shake d-none d-md-inline-flex" href="account-signin.html">
+        <i class="fa-regular fa-user animate-target"></i>
+        <span class="visually-hidden">Account</span>
+      </a>
+
+      <!-- Cart button -->
+      <a href="#" class="text-white btn btn-icon fs-lg position-relative border animate-shake d-none d-md-inline-flex">
+        <i class="fa-regular fa-bell"></i>
+        <span class="position-absolute top-0 start-100 badge fs-xs text-bg-secondary rounded-pill ms-n3 z-2">8</span>
+
+      </a>
+    </div>
+  </div>
+
+  <!-- Search collapse available on screens < 768px wide (md breakpoint) -->
+  <div class="collapse d-md-none" id="searchBar">
+    <div class="container pt-2 pb-3">
+      <div class="position-relative">
+        <i class="ci-search position-absolute top-50 translate-middle-y d-flex fs-lg ms-3"></i>
+        <input type="search" class="form-control form-icon-start rounded-pill" placeholder="Search for products"
+          data-autofocus="collapse">
+      </div>
+    </div>
+  </div>
+</header>

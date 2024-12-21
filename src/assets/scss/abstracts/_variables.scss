@@ -1,0 +1,77 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+// https://bootstrapvars.com/5.3/
+
+$red:                         #f05555;
+$gray-100:                    #f7f7f7;
+$gray-200:                    #e4e4e4;
+$gray-900:                    #30302e;
+$beige-100:                   #f0ebe3;
+$primary:                       $gray-900;
+$secondary:                     $beige-100;
+$success:                       $secondary;
+$info:                          $gray-900;
+$warning:                       $primary;
+$danger:                        $red;
+$black:                       #000000;
+
+// Changing the theme colors
+$primary: #072365;
+$secondary: #000000;
+$success: #61BF60;
+$info: #5BC3D8;
+$warning: #F0A94C;
+$danger: #D85250;
+$dark: #242424; 
+
+
+// =============================================================================
+// Font Family
+// =============================================================================
+$font-family-base: "Poppins", serif;
+
+// Font Size
+$font-size-base:              1rem; // 16px
+$body-font-size:              $font-size-base; // 16px
+$font-size-multiplier:        1.25; // Multiplier for font size calculations
+$h6-font-size:                $body-font-size * $font-size-multiplier; // 20px (1.25 * 16px)
+$h5-font-size:                $h6-font-size * $font-size-multiplier; // 25px (1.25 * 20px)
+$h4-font-size:                $h5-font-size * $font-size-multiplier; // 31.25px (1.25 * 25px)
+$h3-font-size:                $h4-font-size * $font-size-multiplier; // 39.0625px (1.25 * 31.25px)
+$h2-font-size:                $h3-font-size * $font-size-multiplier; // 48.828125px (1.25 * 39.0625px)
+$h1-font-size:                $h2-font-size * $font-size-multiplier; // 61.03515625px (1.25 * 48.828125px)
+
+$display-font-sizes: (
+  1: 5.25rem, // 5.25rem is 84px (5.25 * 16px).
+  2: 4.75rem, // 4.75rem is 76px (4.75 * 16px).
+  3: 3.5rem,  // 3.5rem is 56px (3.5 * 16px).
+  4: 3.0rem,  // 3.0rem is 48px (3.0 * 16px).
+  5: 2.35rem, // 2.35rem is 37.6px (2.35 * 16px).
+  6: 1.8rem   // 1.8rem is 28.8px (1.8 * 16px).
+);
+
+// Grid breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xml: 1440px,
+  xxl: 1800px
+);
+
+// Grid containers
+$container-max-widths: (
+  sm: 100%,
+  md: 100%,
+  lg: 100%,
+  xl: 1150px,
+  xxl: 1310px
+);
+
+// =============================================================================
+// SETTINGS
+// =============================================================================
+$dropdown-min-width: auto;
