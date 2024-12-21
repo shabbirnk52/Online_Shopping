@@ -40,7 +40,7 @@ const cache = require('gulp-cache');
 const replace = require('gulp-replace');
 
 const log = console.log;
-// Start: Added by Adil
+// Start: Added by Shabbir
 const fs = require('fs');
 const path = require('path');
 const through2 = require('through2');
@@ -57,7 +57,7 @@ var ArabicResourceStructure = [];
 var EnglishResourceStructureByPage = [];
 var ArabicResourceStructureByPage = [];
 var SourceResourceFileDumper = [];
-// End: Added by Adil
+// End: Added by Shabbir
 
 // File paths
 const files = {
@@ -97,10 +97,10 @@ function compileHTML() {
       })
     )
     .pipe(dest('dist'))
-    // Adil
+    // Shabbir
     .pipe(replace('.html"', '-rtl.html"'))
     .pipe(replace(".html'", "-rtl.html'"))
-    //Ruchir
+    //Shabbir
     .pipe(rename({ suffix: '-rtl' }))
     .pipe(dest('dist'))
     .pipe(browserSync.stream());
@@ -128,7 +128,7 @@ function compileSCSS() {
     }).on('error', sass.logError))
     .pipe(autoprefixer('last 2 versions'))
     .pipe(dest('dist/assets/css'))
-    //Ruchir
+    //Shabbir
     .pipe(browserSync.stream())
     .pipe(rtlcss())
     .pipe(rename({ suffix: '-rtl' }))

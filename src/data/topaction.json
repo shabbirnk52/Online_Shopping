@@ -1,0 +1,18 @@
+
+[
+    {
+        "Title":"Submit a Ticket",
+        "Description":"Create a new support ticket for technical issues.",
+        "Button":"New Ticket"
+    },
+    {
+        "Title":"Knowledge Base",
+        "Description":"Find answers to common questions.",
+        "Button":"Browse Articles"
+    },
+    {
+        "Title":"Track Ticket",
+        "Description":"Check the status of your existing ticket.",
+        "Button":"View Status"
+    }
+]

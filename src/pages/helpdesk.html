@@ -3,17 +3,256 @@ layout: default
 title: HelpDesk Page
 ---
 
+ 
+<style>
+        
+   
+    .animate-scale:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .animate-shake:hover {
+        animation: shake 0.5s;
+    }
+    
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+</style>
 
 
+    <div class="container-fluid">
+        <div class="row g-3">
+            <!-- Sidebar -->
+            <aside class="col-2 d-none d-lg-block p-0 bg-primary vh-100">
+                {{> _sidebar}}
+            </aside>
 
-<div class="container-fluid">
-    <aside>
-        <h2>HelpDesk 2</h2>
-    </aside>
+            <!-- Main Content -->
+            <main class="col-lg-10 col-12 p-4">
+               
+                <div class="my-2">
+                    <h1 class="display-6 mb-3">IT Help Desk</h1>
+                    <p class="lead">Hi there, here are the things we can help you with.</p>
+                </div>
 
-    <section>
-        <h1>IT Help Desk</h1>
-        <div class="h5">Hi there, here are the things we can help you with.</div>
-    </section>
-</div>
+                <!-- Quick Actions -->
+                 <section>
+                {{> _top_action}}
+                 </section>
 
+                <!-- Support Team Section -->
+                <section class="mb-5">
+                    <h2 class="fs-4 mb-4">Our Support Team</h2>
+                   {{> _support_team}}
+                </section>
+
+                <!-- Active Agents Section -->
+                <section class="mb-5">
+                    <h2 class="fs-4 mb-4">Currently Active Agents</h2>
+                   {{> _currently_active}}
+                </section>
+
+                
+
+            </main>
+        </div>
+    </div>
+
+    
+    
+    <script>
+        // Helper function to generate random specializations
+        function getRandomSpecialization() {
+            const specializations = [
+                'Hardware Support',
+                'Software Development',
+                'Network Security',
+                'Cloud Infrastructure',
+                'Data Recovery',
+                'System Administration'
+            ];
+            return specializations[Math.floor(Math.random() * specializations.length)];
+        }
+
+        // Helper function to generate random experience years
+        function getRandomExperience() {
+            return Math.floor(Math.random() * 15) + 1;
+        }
+
+        // Helper function to generate random status
+        function getRandomStatus() {
+            const statuses = [
+                ['Available', 'success'],
+                ['In Meeting', 'warning'],
+                ['On Call', 'info'],
+                ['Busy', 'danger']
+            ];
+            return statuses[Math.floor(Math.random() * statuses.length)];
+        }
+
+        $(document).ready(function() {
+            $('#loading-spinner').show();
+            // Fetch multiple characters from SWAPI
+            const characterPromises = [];
+            for (let i = 1; i <= 10; i++) {
+                characterPromises.push(
+                    $.ajax({
+                        url: `https://swapi.info/api/people/${i}`,
+                        method: 'GET'
+                    }).catch(error => {
+                        console.error(`Error fetching character ${i}:`, error);
+                        return null;
+                    })
+                );
+            }
+
+            Promise.all(characterPromises)
+                .then(characters => {
+                    const validCharacters = characters.filter(char => char !== null);
+                    
+                    // Update support team section
+                    const teamHtml = validCharacters.slice(0, 6).map(char => `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="flex-shrink-0">
+                                            <img src="https://i.pravatar.cc/100?u${char.name}" class="rounded-circle" alt="${char.name}">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="mb-1">${char.name}</h5>
+                                            <p class="text-muted mb-0">${getRandomSpecialization()}</p>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="mb-2"><strong>Species:</strong> ${char.species.length ? 'Alien' : 'Human'}</p>
+                                        <p class="mb-2"><strong>Birth Year:</strong> ${char.birth_year}</p>
+                                        <p class="mb-0"><strong>Experience:</strong> ${getRandomExperience()} years</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary">View Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    $('#support-team').html(teamHtml);
+
+                    // Update active agents table
+                    const agentsHtml = validCharacters.slice(6).map(char => {
+                        const [status, statusClass] = getRandomStatus();
+                        return `
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://i.pravatar.cc/100?u${char.name}" class="rounded-circle me-2" alt="${char.name}">
+                                        ${char.name}
+                                    </div>
+                                </td>
+                                <td>${getRandomSpecialization()}</td>
+                                <td>${getRandomExperience()} years</td>
+                                <td><span class="badge bg-${statusClass}">${status}</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary me-1">
+                                        <i class="fa-solid fa-message"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fa-solid fa-video"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                    
+                    $('#active-agents').html(agentsHtml);
+
+                    // Update the sidebar support agent with a random character
+                    const randomAgent = validCharacters[Math.floor(Math.random() * validCharacters.length)];
+                    $('#support-agent').html(`
+                        <h3 class="fs-6 mb-2">Support Agent</h3>
+                        <div class="d-flex align-items-center">
+                            <img src="https://i.pravatar.cc/100?u${randomAgent.name}" class="rounded-circle me-2" alt="${randomAgent.name}">
+                            <div>
+                                <p class="mb-1 text-white">${randomAgent.name}</p>
+                                <p class="small text-white-50">Available for support</p>
+                            </div>
+                        </div>
+                    `);
+
+                    $('#loading-spinner').hide();
+                })
+                .catch(error => {
+                    console.error('Error fetching characters:', error);
+                    $('#loading-spinner').hide();
+                    // Show error message
+                    const errorHtml = `
+                        <div class="alert alert-danger" role="alert">
+                            Unable to load support team information. Please try again later.
+                        </div>
+                    `;
+                    $('#support-team').html(errorHtml);
+                });
+
+            // Original fetch for single support agent replaced by above code
+            $.ajax({
+                url: 'https://swapi.info/api/people/' + Math.floor(Math.random() * 10 + 1),
+                method: 'GET',
+                success: function(response) {
+                    $('#support-agent').html(`
+                        <img src="https://i.pravatar.cc/100?u${response.name}" class="rounded-circle me-2" alt="${response.name}">
+                        <h3 class="fs-6 mb-2">Support Agent</h3>
+                        <p class="mb-1 text-white">${response.name}</p>
+                        <p class="small text-white-50">Available for support</p>
+                    `);
+                },
+                error: function() {
+                    $('#support-agent').html(`
+                        <h3 class="fs-6 mb-2">Support Agent</h3>
+                        <p class="mb-1 text-white">John Doe</p>
+                        <p class="small text-white-50">Available for support</p>
+                    `);
+                }
+            });
+
+            // Handle form submission
+            $('#helpdesk-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    subject: $('#subject').val(),
+                    category: $('#category').val(),
+                    description: $('#description').val(),
+                    priority: $('#priority').val(),
+                    timestamp: new Date().toISOString(),
+                    ticketId: 'TIC-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+                };
+
+                // In a real application, you would send this to your backend
+                console.log('Ticket submitted:', formData);
+
+                // Show success message using Bootstrap alert
+                const alertHtml = `
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Ticket ${formData.ticketId} has been created successfully!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
+                $(alertHtml).insertBefore('#ticket-form');
+                
+                // Reset form and hide it
+                this.reset();
+                hideTicketForm();
+            });
+        });
+
+        function showTicketForm() {
+            $('#ticket-form').removeClass('d-none');
+        }
+
+        function hideTicketForm() {
+            $('#ticket-form').addClass('d-none');
+        }
+    </script>

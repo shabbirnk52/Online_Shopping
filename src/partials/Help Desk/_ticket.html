@@ -1,0 +1,39 @@
+<div id="ticket-form" class="card border-0 shadow-sm d-none col-8 m-auto">
+    <div class="card-body p-4">
+        <h2 class="fs-4 mb-4">Submit a New Ticket</h2>
+        <form id="helpdesk-form">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label" for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="category">Category</label>
+                    <select id="category" name="category" class="form-select" required>
+                        <option value="">Select a category</option>
+                        <option value="hardware">Hardware Issue</option>
+                        <option value="software">Software Issue</option>
+                        <option value="network">Network Issue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea id="description" name="description" rows="4" class="form-control" required></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="priority">Priority</label>
+                    <select id="priority" name="priority" class="form-select" required>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="col-12 text-end mt-4">
+                    <button type="button" class="btn btn-outline-secondary me-2" onclick="hideTicketForm()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
