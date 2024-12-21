@@ -1,4 +1,4 @@
-# Frontend Template HTML | BOOTSTRAP + GULP STARTER TEMPLATE
+# Kaifan Help Desk
 
 ![Bootstrap Badge](https://img.shields.io/badge/Bootstrap-712cf9)
 ![Gulp Badge](https://img.shields.io/badge/Gulp-cf4647)
@@ -25,8 +25,8 @@ Make sure you have Node.js (21.2.0+) and npm installed on your machine.
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/adilasif-io/Frontend-Template.git
-cd Frontend-Template
+git clone https://github.com/shabbirnk52/Online_Shopping.git
+cd Online_Shopping
 ```
 
 ### Install Dependencies
@@ -133,7 +133,7 @@ The template is built with Sass and Gulp build system with these features:
 <!-- markdownlint-disable -->
 <table>
   <tr>  
-    <td align="center"><a href="https://github.com/adilasif-io"><img src="https://avatars.githubusercontent.com/u/98095445?v=4" width="100px;" alt=""/><br /><sub><b>adilasif-io</b></sub></a></td>
+    <td align="center"><a href="https://github.com/shabbirnk52"><br /><sub><b>shabbirnk52</b></sub></a></td>
   </tr>
 </table>
 
